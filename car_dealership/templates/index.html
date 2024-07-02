@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Car Dealership</title>
+</head>
+<body>
+    <h1>Car Listings</h1>
+    <form method="post" enctype="multipart/form-data">
+        Make: <input type="text" name="make"><br>
+        Model: <input type="text" name="model"><br>
+        Year: <input type="number" name="year"><br>
+        Price: <input type="text" name="price"><br>
+        Picture: <input type="file" name="photo"><br>
+        <input type="submit" value="Add Car">
+    </form>
+    <ul>
+        {% for car in cars %}
+        <li>
+            {{ car.make }} {{ car.model }} - {{ car.year }} - ${{ car.price }}
+            {% if car.image_filename %}
+                <img src="{{ url_for('static', filename='images/' + car.image_filename) }}" alt="Car Image" width="100">
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
